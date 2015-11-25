@@ -26,7 +26,7 @@ var server = http.createServer(function(req,res){
 					work.add(db,req,res);
 					break;
 				case '/archive':
-					work.archive(db.req,res);
+					work.archive(db,req,res);
 					break;
 				case '/delete':
 					work.delete(db,req,res);
@@ -38,7 +38,7 @@ var server = http.createServer(function(req,res){
 				case '/':
 					work.show(db,res);
 					break;
-				case '/archive':
+				case '/archived':
 					work.showArchived(db,res);
 					break;
 			}
@@ -46,6 +46,7 @@ var server = http.createServer(function(req,res){
 	}
 });
 
+//程序运行时建数据表,如果没错误监听3000端口
 db.query(sql,function(err){
 	if(err) throw err;
 	console.log('Server started...');
